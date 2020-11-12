@@ -9,4 +9,6 @@ use Rack::MethodOverride
 #mount other controllers with use here.
 
 use UsersController
+use SessionsController
+use StudyListsController
 run ApplicationController
