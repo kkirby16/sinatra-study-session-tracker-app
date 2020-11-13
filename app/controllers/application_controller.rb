@@ -11,4 +11,14 @@ class ApplicationController < Sinatra::Base
   get "/" do
     erb :welcome
   end
+
+  helpers do
+    def logged_in?
+      !!current_user
+    end
+
+    def current_user
+      @current_user ||= User.find_by(id: session[:user_id]) #returns nil if you pass in a key value pair that doesn't match.
+    end #the first time current user is referenced within scope of application controller, this @current_user variable will get created and assigned if the user is found, otherwise it will still be nil. and that way a subsequent call to @current_user if it is already called won't hit the database again. so this is like a little energy saver.
+  end
 end
