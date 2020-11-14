@@ -1,0 +1,24 @@
+<h1>Here is your studylist for <%= @studylist.topic %>!
+
+<h2><%= @studylist.topic %> list:</h2>
+
+<h2>Here are the study sessions associated with this studylist so far:</h2>
+
+<% if @studylist.sessions.count == 1 %>
+<h1>You have no study sessions yet for this study list.</h1>
+<% elsif @studylist.sessions.count > 1 %>
+<% @studylist.sessions.each do |session| %>
+<%= session.time_studied %><br>
+<%= session.date_completed %><br>
+<%= session.notes %><br><br>
+<br>
+<ul>
+
+<% end %>
+<% end %>
+
+
+
+<br>
+<br>
+<a href="/studylists/<%= @studylist.id %>/sessions/new">Click here to create a study session associated with this study list</a>

@@ -1,0 +1,16 @@
+<body>
+<h1>Create a study session associated with your study list</h1>
+<form method="/studylists/<%= @studylist.id %>/sessions/post" action="post">
+<label>Time that you studied</label>
+<input type="text" name="time_studied"> 
+<br>
+<label>Date completed</label>
+<input type="" name="date_completed">
+<br>
+<label>Notes for study session</label>
+<input type="text" name="notes"> 
+<input type="submit" value="Create study session">
+</form>
+
+
+

@@ -1,0 +1,9 @@
+
+
+<body>
+
+<h1>Here are all of your studylists so far</h1>
+<% @user.study_lists.each do |studylist| %>
+<%= studylist.topic %><br>
+<% end %>
+</body>
