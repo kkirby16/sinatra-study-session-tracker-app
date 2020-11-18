@@ -1,16 +1,19 @@
-<h1>Here is your studylist for <%= @studylist.topic %>!
+<body>
 
-<h2><%= @studylist.topic %> list:</h2>
 
-<h2>Here are the study sessions associated with this studylist so far:</h2>
+<h1 align="center">Studylist for <%= @studylist.topic %></h1>
+
+
+
+<h2>Below are the study sessions associated with this <%= @studylist.topic %> studylist:</h2>
 
 <% if @studylist.sessions.count == 1 %>
-<h1>You have no study sessions yet for this study list.</h1>
+<h3>You have no study sessions yet for this study list.</h3>
 <% elsif @studylist.sessions.count > 1 %>
 <% @studylist.sessions.each do |session| %>
-<%= session.time_studied %><br>
+<a href="/studylists/<%= @studylist.id %>/sessions/<%= session.id %>"> <%= session.time_studied %><br>
 <%= session.date_completed %><br>
-<%= session.notes %><br><br>
+<%= session.notes %><br><br></a>
 <br>
 <ul>
 
@@ -21,4 +24,11 @@
 
 <br>
 <br>
-<a href="/studylists/<%= @studylist.id %>/sessions/new">Click here to create a study session associated with this study list</a>
+<a href="/studylists/<%= @studylist.id %>/sessions/new">Add a completed study session to this studylist</a>
+<h4>To edit or delete a study session, click into that created session.</h4>
+<br><br><br>
+<a href="/users/index">Back to homepage</a>
+
+
+</body>
+
