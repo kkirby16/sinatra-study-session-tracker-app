@@ -23,7 +23,7 @@ class UsersController < ApplicationController #any methods you build in applicat
 
   get "/users/signup" do
     if !logged_in?
-      erb :'/users/signup' #with erb rendering you're looking for the path to the file.
+      erb :'/users/signup'
     else
       redirect "/users/index"
     end
