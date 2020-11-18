@@ -26,7 +26,6 @@ class StudyListsController < ApplicationController
     if params[:topic] != "" && current_user.study_lists.find_by(topic: params[:topic]) == nil
       @user = current_user
       @studylist = StudyList.create(topic: params[:topic])
-
       @user.study_lists << @studylist
       redirect to "/studylists/#{@studylist.id}"
     else
@@ -61,6 +60,8 @@ class StudyListsController < ApplicationController
       redirect "/users/login"
     end
   end
+
+  #
 
   get "/studylists/:id/sessions/:number" do
     if logged_in?
