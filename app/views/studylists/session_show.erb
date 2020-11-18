@@ -1,0 +1,10 @@
+<h1>Completed Study Session</h1>
+
+<p style="border:4px; border-style:solid; border-color:#00CC33; padding: 1em;">
+
+Time Studied: <%= @session.time_studied %><br><br>
+Date Completed: <%= @session.date_completed %><br><br>
+Notes: <%= @session.notes %><br><br>
+</p>
+
+<a href="/studylists/<%= @studylist.id %>">Back to studylist for <%= @studylist.topic %></a> 
