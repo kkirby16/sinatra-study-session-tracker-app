@@ -2,8 +2,18 @@
 
 <body>
 
-<h1>Here are all of your studylists so far</h1>
+<h1>Study Lists</h1>
+
+<% if current_user.study_lists.count == 0 %>
+<h3>You have no study lists created yet.</h3>
+<% else %>
+<h1>Here are all of your studylists so far</h1><br>
 <% @user.study_lists.each do |studylist| %>
-<%= studylist.topic %><br>
+<li><a href="/studylists/<%= studylist.id %>"><%= studylist.topic %></li></a><br>
 <% end %>
+<% end %><br><br><br><br>
+
+<a href="/users/index">Back to homepage</a>
+
 </body>
+
