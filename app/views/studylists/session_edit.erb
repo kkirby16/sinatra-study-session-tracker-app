@@ -1,0 +1,22 @@
+<h1>Update Study Session</h1>
+<br>
+
+<form action="/studylists/<%= @studylist.id %>/sessions/<%= @session.id %>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="patch">
+<label>Update the session's time studied: </label>
+<input type="text" name="time_studied" value="<%= @session.time_studied %>">
+<br>
+<br>
+<label>Update the session's date completed: </label>
+<br>
+<input type="date" name="date_completed" value="<%= @session.date_completed %>">
+<br>
+<br>
+<label>Update the session's notes: </label>
+<br>
+<input type="text" name="notes" value="<%= @session.notes %>">
+<br>
+<br>
+<input type="submit" value="Update session">
+
+</form>
