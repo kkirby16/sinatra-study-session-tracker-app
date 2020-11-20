@@ -18,7 +18,11 @@ class UsersController < ApplicationController #any methods you build in applicat
   end
 
   get "/users/index" do
-    erb :'/users/index'
+    if logged_in?
+      erb :'/users/index'
+    else
+      redirect "/users/login"
+    end
   end
 
   get "/users/signup" do
@@ -30,8 +34,8 @@ class UsersController < ApplicationController #any methods you build in applicat
   end
 
   post "/users" do #here we are creating a new user. restful routing conventions tell us when you are creating a new thing you post to the plural of whatever it is you are creating.
-    if params[:username] != "" && params[:password] != ""
-      @user = User.create(params)
+    @user = User.new(params)
+    if @user.save
       session[:user_id] = @user.id
 
       redirect "/users/index"
