@@ -3,11 +3,20 @@
 <p style="border:4px; border-style:solid; border-color:#00CC33; padding: 1em;">
 
 Time Studied: <%= @session.time_studied %><br><br>
-Date Completed: <%= @session.date_completed %><br><br>
+Date Completed: <%= @session.date_completed.strftime("%m-%d-%Y") %><br><br>
 Notes: <%= @session.notes %><br><br>
 </p>
 
-<h4>Edit study session (will be working on this)<h4> <h4>Delete study session (will be working on this)<h4> 
+<a href="/studylists/<%= @studylist.id %>/sessions/<%= @session.id %>/edit"><button>Edit this study session</button></a> 
+<br><br>
 
-<a href="/studylists/<%= @studylist.id %>">Back to studylist for <%= @studylist.topic %></a> 
+<form action="/studylists/<%= @studylist.id %>/sessions/<%= @session.id %>/delete" method="post">
+<input type="hidden" name="_method" value="delete">
+<input type="submit" value="Delete Study Session">
+</form>
+
+
+<br><br><br>
+<a href="/studylists/<%= @studylist.id %>"><button>Back to studylist for <%= @studylist.topic %></button></a> 
+
 
