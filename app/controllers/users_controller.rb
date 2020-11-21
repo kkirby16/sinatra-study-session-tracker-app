@@ -1,4 +1,10 @@
+require "sinatra"
+require "rack-flash"
+
 class UsersController < ApplicationController #any methods you build in application controller will because of this inheriting be available across all of your other controllers.
+  enable :sessions
+  use Rack::Flash
+
   get "/users/login" do
     if !logged_in?
       erb :'users/login'
@@ -13,6 +19,7 @@ class UsersController < ApplicationController #any methods you build in applicat
       session[:user_id] = user.id #what actually logs the user in.
       redirect "/users/index" #when we redirect we are writing in the url of the request we are sending.
     else
+      flash[:message] = "*Make sure you have entered a unique valid username and a valid password."
       redirect "/users/login" #if wondering whether you should redirect or render think about what route are you in and what is its job? rarely are we going to render from a post, patch or delete request. rendering should happen from a get request.
     end
   end
@@ -40,6 +47,7 @@ class UsersController < ApplicationController #any methods you build in applicat
 
       redirect "/users/index"
     else
+      flash[:message] = "*Make sure username and password are both filled in, and that username is unique."
       redirect "/users/signup"
     end
   end
