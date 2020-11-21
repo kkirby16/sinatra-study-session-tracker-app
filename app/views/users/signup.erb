@@ -13,5 +13,11 @@
 <br>
 <input type="submit" value="Create your account">
 </form>
+<br>
+<br>
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
+
 
 </body>
