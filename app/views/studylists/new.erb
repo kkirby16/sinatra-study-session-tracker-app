@@ -1,6 +1,7 @@
 <body>
 
 
+
 <h1>Create a new Study List</h1>
 <br>
 <form action="/studylists" method="post">
@@ -9,7 +10,14 @@
 <br>
 <br>
 <input type="submit" value="Create Study List">
-</form><br><br><br><br>
+</form>
+<br>
+
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
+
+<br><br><br>
 
 <a href="/users/index"><button>Back to homepage</button></a>
 
