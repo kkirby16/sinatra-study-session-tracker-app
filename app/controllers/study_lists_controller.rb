@@ -1,4 +1,10 @@
+require "sinatra"
+require "rack-flash"
+
 class StudyListsController < ApplicationController
+  enable :sessions
+  use Rack::Flash
+
   get "/studylists/new" do
     if logged_in?
       @studylists = StudyList.all
@@ -28,6 +34,7 @@ class StudyListsController < ApplicationController
     if @studylist.save
       redirect to "/studylists/#{@studylist.id}"
     else
+      flash[:message] = "*Make sure you have a topic present that is also a topic you haven't used before for a studylist."
       redirect "/studylists/new"
     end
   end
@@ -60,6 +67,8 @@ class StudyListsController < ApplicationController
     if @session.save
       redirect "/studylists/#{@studylist.id}"
     else
+      flash[:message] = "*Make sure you have filled out both the time studied box and selected a date for date completed. Notes are optional."
+
       redirect "/studylists/#{@studylist.id}/sessions/new"
     end
   end
@@ -88,6 +97,7 @@ class StudyListsController < ApplicationController
       if @session.save
         redirect "/studylists/#{@studylist.id}/sessions/#{@session.id}"
       else
+        flash[:message] = "*Make sure you have filled out both the time studied box and selected a date for date completed. Notes are optional."
         redirect "/studylists/#{@studylist.id}/sessions/#{@session.id}/edit"
       end
     else
