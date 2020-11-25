@@ -20,10 +20,15 @@ Study Session Tracker is a CRUD MVC Sinatra app that I designed to help users ke
 Study Session Tracker gives users the ability to: 
 
 -Login, signup and logout
+
 -Create study lists for certain study topics. 
+
 -View the study lists they have created.
--Create completed study sessions that are associated with a specific study list that go onto that study list. 
+
+-Create completed study sessions that are associated with a specific study list that go onto that study list.
+
 -Edit completed study sessions.
+
 -Delete completed study sessions that have been created.
 
 
