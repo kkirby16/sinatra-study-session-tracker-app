@@ -29,8 +29,7 @@ class StudyListsController < ApplicationController
   end
 
   post "/studylists" do
-    @user = current_user
-    @studylist = StudyList.new(topic: params[:topic], user_id: @user.id)
+    @studylist = StudyList.new(topic: params[:topic], user_id: current_user.id)
     if @studylist.save
       redirect to "/studylists/#{@studylist.id}"
     else
