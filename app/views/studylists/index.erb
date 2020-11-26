@@ -7,7 +7,7 @@
 <% if current_user.study_lists.count == 0 %>
 <h3>You have no study lists created yet.</h3>
 <% else %>
-<h2>Here are all of your studylists so far:</h2><br>
+<h2>Here are all of your study lists so far:</h2><br>
 <% @user.study_lists.each do |studylist| %>
 <li><a href="/studylists/<%= studylist.id %>">List for <%= studylist.topic %></li></a><br>
 <% end %>
