@@ -1,11 +1,11 @@
 <body>
 
 
-<h1 align="center">Studylist for <%= @studylist.topic %></h1>
+<h1 align="center">Study list for <%= @studylist.topic %></h1>
 
 
 
-<h2>Below are the completed study sessions associated with this <%= @studylist.topic %> studylist:</h2>
+<h2>Below are the completed study sessions associated with this <%= @studylist.topic %> study list:</h2>
 <br>
 
 <% if @studylist.sessions.count == 0 %>
@@ -27,7 +27,7 @@
 
 <br>
 <br>
-<a href="/studylists/<%= @studylist.id %>/sessions/new"><button>Add a study session to this studylist</button></a>
+<a href="/studylists/<%= @studylist.id %>/sessions/new"><button>Add a study session to this study list</button></a>
 <br><br>
 <h5>To edit or delete a study session, click into that created session.</h5>
 <br><br><br>
