@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_secure_password #allows you to use bcrypt to hash and salt your passwords and save them in the database under a column called password_digest
+  has_secure_password
   has_many :study_lists
   has_many :sessions
   validates :username, uniqueness: true
