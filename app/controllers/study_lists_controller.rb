@@ -28,12 +28,16 @@ class StudyListsController < ApplicationController
   end
 
   post "/studylists" do
-    @studylist = StudyList.new(topic: params[:topic], user_id: current_user.id)
-    if @studylist.save
-      redirect to "/studylists/#{@studylist.id}"
+    if logged_in?
+      @studylist = StudyList.new(topic: params[:topic], user_id: current_user.id)
+      if @studylist.save
+        redirect to "/studylists/#{@studylist.id}"
+      else
+        flash[:message] = "*Make sure you have a topic filled in that is also a topic you haven't used before for a studylist."
+        redirect "/studylists/new"
+      end
     else
-      flash[:message] = "*Make sure you have a topic filled in that is also a topic you haven't used before for a studylist."
-      redirect "/studylists/new"
+      redirect "/users/login"
     end
   end
 
@@ -60,14 +64,18 @@ class StudyListsController < ApplicationController
   end
 
   get "/studylists/:id/sessions/post" do
-    @studylist = StudyList.find_by(id: params[:id])
-    @session = Session.new(time_studied: params[:time_studied], date_completed: params[:date_completed], notes: params[:notes], user_id: current_user.id, study_list_id: @studylist.id)
-    if @session.save
-      redirect "/studylists/#{@studylist.id}"
-    else
-      flash[:message] = "*Make sure you have filled out both the time studied box and selected a date for date completed. Notes are optional."
+    if logged_in?
+      @studylist = StudyList.find_by(id: params[:id])
+      @session = Session.new(time_studied: params[:time_studied], date_completed: params[:date_completed], notes: params[:notes], user_id: current_user.id, study_list_id: @studylist.id)
+      if @session.save
+        redirect "/studylists/#{@studylist.id}"
+      else
+        flash[:message] = "*Make sure you have filled out both the time studied box and selected a date for date completed. Notes are optional."
 
-      redirect "/studylists/#{@studylist.id}/sessions/new"
+        redirect "/studylists/#{@studylist.id}/sessions/new"
+      end
+    else
+      redirect "/users/login"
     end
   end
 
@@ -82,9 +90,13 @@ class StudyListsController < ApplicationController
   end
 
   get "/studylists/:id/sessions/:number/edit" do
-    @studylist = StudyList.find_by(id: params[:id])
-    @session = Session.find_by(id: params[:number])
-    erb :'/studylists/session_edit'
+    if logged_in?
+      @studylist = StudyList.find_by(id: params[:id])
+      @session = Session.find_by(id: params[:number])
+      erb :'/studylists/session_edit'
+    else
+      redirect "/users/login"
+    end
   end
 
   patch "/studylists/:id/sessions/:number" do
@@ -106,8 +118,8 @@ class StudyListsController < ApplicationController
   delete "/studylists/:id/sessions/:number/delete" do
     if logged_in?
       @studylist = StudyList.find_by(id: params[:id])
-      @tweet = Session.find_by(id: params[:number])
-      @tweet.delete
+      @session = Session.find_by(id: params[:number])
+      @session.delete
       redirect "/studylists/#{@studylist.id}"
     else
       redirect "/users/login"

@@ -1,7 +1,7 @@
 require "sinatra"
 require "rack-flash"
 
-class UsersController < ApplicationController #any methods you build in application controller will because of this inheriting be available across all of your other controllers.
+class UsersController < ApplicationController
   use Rack::Flash
 
   get "/users/login" do
@@ -12,11 +12,11 @@ class UsersController < ApplicationController #any methods you build in applicat
     end #bcrypt hashes and salts users passwords so we don't have string passwords in the database.
   end
 
-  post "/login" do #we're creating a session here... aka we are adding a key/value pair to the session hash.
+  post "/login" do
     user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password]) #making sure the user has the right credentials.
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id #what actually logs the user in.
-      redirect "/users/index" #when we redirect we are writing in the url of the request we are sending.
+      redirect "/users/index"
     else
       flash[:message] = "*Make sure you have entered a valid username and password."
       redirect "/users/login" #if wondering whether you should redirect or render think about what route are you in and what is its job? rarely are we going to render from a post, patch or delete request. rendering should happen from a get request.
@@ -39,7 +39,7 @@ class UsersController < ApplicationController #any methods you build in applicat
     end
   end
 
-  post "/users" do #here we are creating a new user. restful routing conventions tell us when you are creating a new thing you post to the plural of whatever it is you are creating.
+  post "/users" do
     @user = User.new(params)
     if @user.save
       session[:user_id] = @user.id
