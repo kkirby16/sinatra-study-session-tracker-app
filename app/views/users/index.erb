@@ -14,5 +14,14 @@
 <br>
 
 <a href="/studylists/index"><button>Take me to see all of my study lists!</button></a>
+<br>
+<br>
+<% if flash.has?(:message) %>
+<%= flash[:message] %>
+<% end %>
 
 </body>
+
+
+
+
