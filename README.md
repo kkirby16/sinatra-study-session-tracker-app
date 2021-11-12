@@ -48,6 +48,6 @@ If you click delete on that specific study session page, the study session will 
 
 There are also some links throughout the app to navigate back to the homepage. Also, from the homepage you can click the button to see all of your study lists. This will show you all of your study lists. You can click into your study lists and then click into your study sessions on those lists this way as well to see, edit or delete them.
 
-#### Video of how to use my app: https://www.youtube.com/watch?v=88EEq9BEQm0
+### Video of how to use my app: https://www.youtube.com/watch?v=88EEq9BEQm0
 
 #### This project is licensed under: https://www.gnu.org/licenses/gpl-3.0.en.html
